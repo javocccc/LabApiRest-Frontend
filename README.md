@@ -1,52 +1,31 @@
 # LabApiRest Frontend
 
-Interfaz web en español para el backend [LabApiRest](https://github.com/javocccc/LabApiRest). Permite consultar, buscar, crear, editar y eliminar libros y canciones.
+Interfaz React para consultar y administrar libros y canciones del repositorio [LabApiRest](https://github.com/javocccc/LabApiRest).
 
-## Requisitos
+## Desarrollo local
 
-- Node.js 18 o superior.
-- El backend de Django en ejecución. No se necesitan paquetes npm.
-
-## Inicio local
-
-En una terminal, inicia el backend:
-
-```bash
-cd labapi
-python -m venv .venv
-# Activa el entorno virtual según tu sistema operativo.
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
-```
-
-En otra terminal, desde este repositorio:
-
-```bash
-npm start
-```
-
-Abre <http://localhost:5173>. El servidor del frontend entrega los archivos estáticos y reenvía las solicitudes a `/api/` hacia `http://127.0.0.1:8000`. Si Django usa otra dirección, establece `BACKEND_URL` antes de ejecutar `npm start` (por ejemplo, `BACKEND_URL=http://127.0.0.1:8080`). Para cambiar el puerto del frontend, establece `PORT`.
-
-En PowerShell:
+Requiere Node.js 20.19 o posterior y el backend Django en `http://127.0.0.1:8000`.
 
 ```powershell
-$env:BACKEND_URL = 'http://127.0.0.1:8000'
-npm start
+Copy-Item .env.example .env
+npm ci
+npm run dev
 ```
 
-## API utilizada
+Abre `http://127.0.0.1:5173`. Vite reenvía `/api/` a Django durante el desarrollo. El valor local de `VITE_API_URL` es `/api`; puedes cambiarlo en `.env`. Este archivo está excluido de Git.
 
-| Recurso | Lista y creación | Detalle, edición y eliminación | Campos |
-| --- | --- | --- | --- |
-| Libros | `/api/libros/` | `/api/libros/{id}/` | `titulo`, `autor`, `anio` |
-| Canciones | `/api/canciones/` | `/api/canciones/{id}/` | `titulo`, `artista`, `anio`, `genero` |
+## Pruebas
 
-El frontend usa el mismo origen para evitar problemas de CORS. En un despliegue, configura el servidor web o proxy para reenviar `/api/` al backend, o ejecuta `server.js` como servidor de la aplicación. El backend actual es un proyecto de desarrollo con `DEBUG=True`; revísalo antes de publicarlo.
-
-## Comprobación
-
-```bash
+```powershell
 npm test
+npm run build
 ```
+
+Las pruebas de Jest y React Testing Library verifican la carga con `fetch`, la búsqueda, el cambio de colección, los errores de API y la creación de un libro.
+
+## Despliegue
+
+En Vercel, usa este repositorio con framework Vite. Configura `VITE_API_URL` con la URL pública del backend terminada en `/api`, por ejemplo `https://labapirest.onrender.com/api`, y vuelve a desplegar después de cambiarla. El backend debe permitir el origen exacto del frontend en `CORS_ALLOWED_ORIGINS`.
+
+La pantalla pública debe listar registros servidos por Django. Compruébalo editando un registro en Django Admin y recargando el frontend.
 
