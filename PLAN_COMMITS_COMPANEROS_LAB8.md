@@ -5,7 +5,7 @@ Este archivo propone trabajo **pendiente**. No atribuye a los compañeros commit
 ## Estado verificado el 27 de noviembre de 2026
 
 - Javier ya subió a [LabApiRest-Frontend](https://github.com/javocccc/LabApiRest-Frontend) la rama `lab8-javier-react-testing` y el [PR borrador 1](https://github.com/javocccc/LabApiRest-Frontend/pull/1).
-- Sus commits son `fe0e1ce` (React y API configurable), `12045c9` (Jest y React Testing Library) y `ab337b3` (guía y Vercel).
+- Sus commits anteriores a este plan son `fe0e1ce` (React y API configurable), `12045c9` (Jest y React Testing Library) y `ab337b3` (guía y Vercel).
 - `npm test`: 4 pruebas aprobadas. `npm run build`: correcto. Libros y canciones cargaron 3 registros reales cada uno en local.
 - En `LabApiRest/main`, `python manage.py test` aprobó 3 pruebas. El backend aún usa `DEBUG=True`, no configura CORS ni variables de producción. El informe antiguo dice 4 pruebas y CORS habilitado; esos datos no corresponden al estado de este repositorio.
 - El historial anterior de Matías en el backend pertenece al trabajo de canciones de laboratorios previos. No se presenta aquí como aporte nuevo del Lab 8.
